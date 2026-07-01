@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Start Interview</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:#1e293b;
+padding:40px;
+border-radius:20px;
+width:500px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:10px;
+margin-top:20px;
+}
+
+button{
+margin-top:20px;
+padding:15px 25px;
+font-size:18px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>🤖 AI Interviewer</h1>
+
+<p>
+Enter any topic you want to be interviewed on
+</p>
+<form action="/interview" method="POST">
+    <label>Select Topic:</label>
+
+    <select name="topic">
+        <option value="Python">Python</option>
+        <option value="Java">Java</option>
+        <option value="DBMS">DBMS</option>
+        <option value="Machine Learning">Machine Learning</option>
+    </select>
+
+    <button type="submit">Start Interview</button>
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Manage Questions</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Manage Interview Questions</h1>
+
+<input type="text"
+placeholder="Enter Question"
+style="width:80%;padding:10px;">
+
+<button class="btn">
+Add Question
+</button>
+
+<br><br>
+
+<table border="1" width="100%">
+
+<tr>
+<th>ID</th>
+<th>Question</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Tell me about yourself</td>
+<td>
+<button>Edit</button>
+<button>Delete</button>
+</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>What are your strengths?</td>
+<td>
+<button>Edit</button>
+<button>Delete</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>

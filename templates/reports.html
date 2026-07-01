@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reports</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    background:#0a1930;
+    color:white;
+    font-family:Arial;
+    padding:40px;
+}
+
+.chart-box{
+    width:800px;
+    margin:auto;
+    background:#1c2942;
+    padding:30px;
+    border-radius:20px;
+}
+</style>
+
+</head>
+<body>
+
+{% if no_data %}
+
+<div style="
+background:#1b2947;
+padding:40px;
+border-radius:20px;
+text-align:center;
+font-size:24px;
+margin-top:30px;
+">
+
+📊 No Interview Reports Available Yet
+
+<br><br>
+
+Complete an interview to see your performance graph.
+
+</div>
+
+{% else %}
+
+<div class="chart-box">
+
+<h1>Performance Reports</h1>
+
+<canvas id="myChart"></canvas>
+
+</div>
+
+<script>
+
+const subjects = {{ subjects|tojson }};
+const scores = {{ scores|tojson }};
+
+new Chart(
+document.getElementById('myChart'),
+{
+    type:'bar',
+
+    data:{
+        labels:subjects,
+
+        datasets:[{
+            label:'Interview Score',
+            data:scores
+        }]
+    }
+}
+);
+
+</script>
+
+{% endif %}
+
+</body>
+</html>

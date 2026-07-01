@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Resume Analysis Result</title>
+
+<style>
+
+body{
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    padding:40px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.box{
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    white-space:pre-wrap;
+    line-height:1.7;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>📊 Resume Analysis Result</h1>
+
+<div class="box">
+{{ analysis }}
+</div>
+
+<a href="/resume-analyzer">
+    <button>Analyze Another Resume</button>
+</a>
+
+</div>
+
+</body>
+</html>

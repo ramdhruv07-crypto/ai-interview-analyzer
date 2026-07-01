@@ -1,0 +1,173 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Resume Analyzer</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(
+rgba(0,0,0,0.75),
+rgba(0,0,0,0.75)
+),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');
+
+background-size:cover;
+background-position:center;
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:700px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+border-radius:25px;
+padding:40px;
+color:white;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.subtitle{
+font-size:18px;
+opacity:0.8;
+margin-bottom:30px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:30px;
+}
+
+.feature{
+background:rgba(255,255,255,0.06);
+padding:20px;
+border-radius:15px;
+}
+
+.feature h3{
+margin-bottom:10px;
+font-size:18px;
+}
+
+.upload-box{
+border:2px dashed #4a7dff;
+padding:40px;
+border-radius:15px;
+margin-bottom:25px;
+}
+
+input[type=file]{
+margin-top:15px;
+color:white;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#4a7dff;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#3566e8;
+transform:translateY(-3px);
+}
+
+.footer{
+margin-top:25px;
+font-size:14px;
+opacity:0.7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📄 AI Resume Analyzer</h1>
+
+<p class="subtitle">
+Upload your resume and receive AI-powered feedback,
+resume score, strengths, weaknesses, and improvement suggestions.
+</p>
+
+<div class="features">
+
+<div class="feature">
+<h3>📊 Resume Score</h3>
+<p>Get a professional score out of 100</p>
+</div>
+
+<div class="feature">
+<h3>💡 Suggestions</h3>
+<p>Improve weak areas instantly</p>
+</div>
+
+<div class="feature">
+<h3>🎯 Job Ready</h3>
+<p>Increase interview chances</p>
+</div>
+
+</div>
+
+<form action="/resume-analyzer"
+      method="POST"
+      enctype="multipart/form-data">
+
+<div class="upload-box">
+
+<h3>Upload Resume (PDF)</h3>
+
+<input
+type="file"
+name="resume"
+accept=".pdf"
+required>
+
+</div>
+
+<button type="submit">
+🚀 Analyze Resume
+</button>
+
+</form>
+
+<div class="footer">
+Supported Format: PDF • AI Powered Analysis
+</div>
+
+</div>
+
+</body>
+</html>
+```

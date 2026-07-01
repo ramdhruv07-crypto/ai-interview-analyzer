@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ subject }} Interview</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial,sans-serif;
+            background:linear-gradient(135deg,#0f172a,#1e293b);
+            min-height:100vh;
+            color:white;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            padding:40px;
+        }
+
+        .interview-card{
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(15px);
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .header{
+            text-align:center;
+        }
+
+        .header img{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            object-fit:cover;
+            margin-bottom:15px;
+        }
+
+        .header h1{
+            margin:0;
+            font-size:42px;
+        }
+
+        .timer{
+            text-align:right;
+            font-size:24px;
+            color:#38bdf8;
+            font-weight:bold;
+            margin-top:20px;
+        }
+
+        .subject{
+            text-align:center;
+            margin-top:25px;
+            font-size:36px;
+        }
+
+        .question-box{
+            background:#1e293b;
+            padding:25px;
+            border-radius:15px;
+            margin-top:30px;
+            font-size:24px;
+            font-weight:bold;
+            border-left:5px solid #3b82f6;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:center;
+            margin-top:30px;
+        }
+
+        button{
+            background:#3b82f6;
+            color:white;
+            border:none;
+            padding:15px 30px;
+            border-radius:10px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#2563eb;
+        }
+
+        .status{
+            text-align:center;
+            margin-top:20px;
+            font-size:20px;
+            color:#22c55e;
+        }
+
+        .answer-box{
+            margin-top:20px;
+            padding:15px;
+            background:#0f172a;
+            border-radius:10px;
+            font-size:18px;
+            color:#38bdf8;
+        }
+
+        .progress{
+            width:100%;
+            background:#334155;
+            border-radius:20px;
+            margin-top:30px;
+        }
+
+        .progress-bar{
+            width:50%;
+            height:15px;
+            background:#22c55e;
+            border-radius:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="welcomeBox" class="question-box">
+    <h2>🤖 AI Interviewer</h2>
+
+    <p>
+        Hello {{ session['name'] }}.<br><br>
+
+        Welcome to the {{ subject }} Technical Interview.<br><br>
+
+        Before we begin, please tell me about yourself.
+    </p>
+
+    <button onclick="startInterview()">
+        Start Interview
+    </button>
+</div>
+
+<div class="container">
+
+    <div class="interview-card">
+
+        <div class="header">
+            <img src="{{ url_for('static', filename='images/ai-avatar.jpg') }}">
+            <h1>🤖 AI Interview Assistant</h1>
+        </div>
+
+        <div class="timer">
+            ⏰ Time Left:
+            <span id="timer">60</span>
+        </div>
+
+        <h2 class="subject">
+            {{ subject }} Interview
+        </h2>
+
+        <h3>
+Question {{ session['question_count'] }}/10
+</h3>
+
+        <div class="question-box" id="question">
+            {{ question }}
+        </div>
+
+        <div class="status" id="status">
+            Click Start Interview
+        </div>
+
+        <div id="candidateAnswer" class="answer-box">
+            Your answer will appear here...
+        </div>
+
+        <form id="answerForm"
+              action="/submit-answer"
+              method="POST">
+
+            <input type="hidden"
+                   name="subject"
+                   value="{{ subject }}">
+
+            <input type="hidden"
+                   id="answer"
+                   name="answer">
+
+            <div class="buttons">
+
+                <button type="button"
+                        onclick="startInterview()">
+                    🎤 Start Interview
+                </button>
+
+            </div>
+            <div class="buttons">
+
+   
+
+    <button type="button" onclick="skipQuestion()">
+        ⏭ Skip Question
+    </button>
+
+</div>
+
+        </form>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+    </div>
+
+</div>
+<div class="ai-message">
+🤖 Hello {{ session['name'] }}.
+
+Welcome to the {{ subject }} Technical Interview.
+
+• Total Questions : 10
+• Time per Question : 60 seconds
+
+Let's begin.
+
+Good Luck!
+</div>
+
+<button type="button" onclick="skipQuestion()">
+    ⏭ Skip Question
+</button>
+
+<div class="progress">
+    <div class="progress-bar"
+         style="width: {{ (session['question_count']/10)*100 }}%;">
+    </div>
+</div>
+
+<script>
+
+function startInterview()
+{
+    let ready = confirm(
+        "🤖 Welcome to the AI Interview!\n\n" +
+        "I am your AI interviewer.\n\n" +
+        "Are you ready to begin the interview?"
+    );
+
+    if(ready)
+    {
+        document.getElementById("status").innerHTML =
+        "🔊 AI is asking the question...";
+
+        speakQuestion();
+    }
+}
+
+function resetTimer() {
+    timeLeft = 60;
+    document.getElementById("timer").innerHTML = timeLeft;
+}
+
+function speakQuestion()
+{
+    let question =
+        document.getElementById("question").innerText;
+
+    let speech =
+        new SpeechSynthesisUtterance(question);
+
+    speech.lang = "en-US";
+
+    speech.onend = function()
+    {
+        startRecognition();
+    };
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(speech);
+}
+
+function skipQuestion() {
+
+    document.getElementById("status").innerHTML =
+    "⏭ Skipping question...";
+
+    document.getElementById("answer").value = "SKIPPED";
+
+    setTimeout(() => {
+        document.getElementById("answerForm").submit();
+    }, 1000);
+}
+
+function startRecognition()
+{
+    if(!('webkitSpeechRecognition' in window))
+    {
+        alert("Speech Recognition not supported in this browser.");
+        return;
+    }
+
+    document.getElementById("status").innerHTML =
+    "🎤 Listening... Speak clearly into your microphone.";
+
+    const recognition =
+        new webkitSpeechRecognition();
+
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.start();
+
+    setTimeout(() =>
+    {
+        recognition.stop();
+    },30000);
+
+    recognition.onresult = function(event)
+    {
+        let answer =
+            event.results[0][0].transcript;
+
+        document.getElementById("answer").value =
+            answer;
+
+        document.getElementById("candidateAnswer").innerHTML =
+            "<b>Your Answer:</b><br><br>" + answer;
+
+        document.getElementById("status").innerHTML =
+            "🤖 AI is analyzing your answer...";
+
+        setTimeout(() =>
+        {
+            document.getElementById("answerForm").submit();
+        },2000);
+    };
+
+    recognition.onerror = function(){
+
+    document.getElementById("answer").value="SKIPPED";
+
+    document.getElementById("answerForm").submit();
+
+}
+}
+
+function speakQuestion() {
+
+    const question = document.getElementById("question").innerText;
+
+    const speech = new SpeechSynthesisUtterance(question);
+
+    speech.lang = "en-US";
+    speech.rate = 1;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    const voices = window.speechSynthesis.getVoices();
+
+    if (voices.length > 0) {
+        speech.voice = voices[0];
+    }
+
+    speech.onstart = function () {
+        console.log("Speech started");
+    };
+
+    speech.onend = function () {
+        console.log("Speech ended");
+        startRecognition();
+    };
+
+    speech.onerror = function (e) {
+        console.log("Speech Error:", e);
+        alert("Speech synthesis failed");
+    };
+
+    window.speechSynthesis.cancel();
+
+    setTimeout(() => {
+        window.speechSynthesis.speak(speech);
+    }, 300);
+}
+
+window.speechSynthesis.onvoiceschanged = function () {
+    console.log(window.speechSynthesis.getVoices());
+};
+
+let timeLeft = 60;
+
+let timer = setInterval(() => {
+
+    if (timeLeft > 0) {
+
+        timeLeft--;
+        document.getElementById("timer").innerHTML = timeLeft;
+
+    } else {
+
+        clearInterval(timer);
+
+        skipQuestion();
+
+    }
+
+}, 1000);
+
+</script>
+
+</body>
+</html>

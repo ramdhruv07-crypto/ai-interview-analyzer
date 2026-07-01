@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Interview Assistant</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    color:white;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+}
+
+.header{
+    text-align:center;
+}
+
+.header img{
+    width:100px;
+    margin-bottom:10px;
+}
+
+.timer{
+    text-align:right;
+    font-size:22px;
+    color:#38bdf8;
+    font-weight:bold;
+}
+
+.subject{
+    text-align:center;
+    margin-top:20px;
+    font-size:40px;
+}
+
+.question-box{
+    background:#1e293b;
+    color:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:30px;
+    margin-bottom:20px;
+    font-size:24px;
+    font-weight:bold;
+    text-align:center;
+}
+
+textarea{
+    width:100%;
+    height:180px;
+    margin-top:20px;
+    border:none;
+    border-radius:15px;
+    padding:20px;
+    font-size:18px;
+    resize:none;
+    box-sizing:border-box;
+}
+
+.buttons{
+    margin-top:20px;
+    display:flex;
+    gap:20px;
+}
+
+button{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2563eb;
+}
+
+.progress{
+    width:100%;
+    background:#334155;
+    border-radius:20px;
+    margin-top:30px;
+}
+
+.progress-bar{
+    width:40%;
+    height:15px;
+    background:#22c55e;
+    border-radius:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="header">
+    <div class="card">
+    <h2>🐍 Python</h2>
+    <a href="/interview/python">
+        <button>Start Interview</button>
+    </a>
+</div>
+
+<div class="card">
+    <h2>☕ Java</h2>
+    <a href="/interview/java">
+        <button>Start Interview</button>
+    </a>
+</div>
+
+<div class="card">
+    <h2>👨‍💼 HR Interview</h2>
+    <a href="/interview/hr">
+        <button>Start Interview</button>
+    </a>
+</div>
+
+<div class="card">
+    <h2>🌐 Web Development</h2>
+    <a href="/interview/web">
+        <button>Start Interview</button>
+    </a>
+</div>
+
+</div>
+
+<form action="/submit-answer" method="POST">
+
+<textarea
+id="answer"
+name="answer"
+placeholder="Type your answer here..."
+required>
+</textarea>
+
+<div class="buttons">
+
+<button
+type="button"
+onclick="startSpeech()">
+🎤 Voice Input
+</button>
+
+<button type="submit">
+✅ Submit Answer
+</button>
+
+</div>
+
+</form>
+
+<div class="progress">
+    <div class="progress-bar"></div>
+</div>
+
+</div>
+
+</div>
+
+<script src="/static/js/timer.js"></script>
+<script src="/static/js/speech.js"></script>
+
+</body>
+</html>

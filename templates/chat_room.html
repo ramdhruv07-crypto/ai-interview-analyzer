@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>AI Interview Room</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+<div class="chat-header">
+AI Interview Session
+</div>
+
+<div id="timer">
+Time Left: <span id="time">300</span> sec
+</div>
+
+<div id="chat-box">
+
+<div class="bot-message">
+Tell me about yourself.
+</div>
+
+</div>
+
+<div class="input-section">
+
+<textarea id="answer"></textarea>
+
+<button onclick="startVoice()">
+🎤
+</button>
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

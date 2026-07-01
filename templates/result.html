@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Interview Result</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:50px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.score{
+    font-size:80px;
+    color:#22c55e;
+    font-weight:bold;
+}
+
+h1{
+    margin-bottom:30px;
+}
+
+.btn{
+    background:#3b82f6;
+    color:white;
+    text-decoration:none;
+    padding:15px 25px;
+    border-radius:10px;
+    display:inline-block;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>🎯 Interview Analysis Result</h1>
+
+<div class="score">
+{{percentage}}%
+</div>
+
+<h2>Score: {{score}}</h2>
+
+{% if percentage >= 80 %}
+<h2>🌟 Excellent Performance</h2>
+{% elif percentage >= 60 %}
+<h2>👍 Good Performance</h2>
+{% else %}
+<h2>📚 Needs Improvement</h2>
+{% endif %}
+<h2>AI Feedback</h2>
+
+<div class="feedback-card">
+
+<h2>🤖 AI Feedback</h2>
+
+<p>{{ feedback }}</p>
+
+</div>
+
+<p>
+AI Feedback:
+Your answer quality was analyzed successfully.
+Continue practicing to improve your interview performance.
+</p>
+
+<a href="/dashboard" class="btn">
+Back to Dashboard
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
+    url('/static/images/background.jpg');
+
+    background-size:cover;
+
+    font-family:'Segoe UI';
+}
+
+.login-box{
+    width:400px;
+
+    background:rgba(255,255,255,.1);
+
+    backdrop-filter:blur(12px);
+
+    padding:40px;
+
+    border-radius:20px;
+
+    color:white;
+
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.login-box h1{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+
+    border:none;
+
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+
+    margin-top:20px;
+
+    background:#3b82f6;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2563eb;
+}

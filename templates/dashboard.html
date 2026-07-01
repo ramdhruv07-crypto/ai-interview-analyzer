@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Interview Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#071330;
+color:white;
+}
+
+.header{
+background:#1b2947;
+padding:25px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+padding:30px 50px;
+}
+
+.stat-card{
+background:#1b2947;
+padding:30px;
+border-radius:20px;
+text-align:center;
+}
+
+.stat-card h2{
+font-size:35px;
+margin-bottom:10px;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+padding:20px 50px 50px;
+}
+
+.card{
+background:#1b2947;
+padding:30px;
+border-radius:20px;
+text-decoration:none;
+color:white;
+transition:.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-5px);
+background:#2450c7;
+}
+
+.card h2{
+margin-bottom:10px;
+}
+
+.activity-section{
+padding:20px 50px;
+}
+
+table{
+width:100%;
+background:white;
+color:black;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+table th,
+table td{
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+.logout{
+text-align:center;
+margin:30px;
+}
+
+.logout a{
+text-decoration:none;
+}
+
+.logout button{
+padding:12px 30px;
+border:none;
+background:#2450c7;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🤖 AI Interview Dashboard
+</div>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h2>{{ total_interviews }}</h2>
+<p>Total Interviews</p>
+</div>
+
+<div class="stat-card">
+<h2>{{ average_score }}%</h2>
+<p>Average Score</p>
+</div>
+
+<div class="stat-card">
+<h2>{{ best_subject }}</h2>
+<p>Best Subject</p>
+</div>
+
+</div>
+
+<div class="feature-grid">
+
+<a href="/interview" class="card">
+<h2>🎤 Start Interview</h2>
+<p>AI Voice Interview</p>
+</a>
+
+<a href="/resume" class="card">
+    <div class="card-icon">📄</div>
+    <h2>Resume Analyzer</h2>
+    <p>AI Resume Review</p>
+</a>
+
+<a href="/reports" class="card">
+<h2>📊 Performance Reports</h2>
+<p>View Analytics</p>
+</a>
+
+<a href="/history" class="card">
+<h2>📜 Interview History</h2>
+<p>Past Attempts</p>
+</a>
+
+<a href="/profile" class="card">
+<h2>👤 Profile</h2>
+<p>Manage Account</p>
+</a>
+
+</div>
+
+<div class="activity-section">
+
+<h2>Recent Activity</h2>
+
+<table>
+
+<tr>
+<th>Subject</th>
+<th>Score</th>
+</tr>
+
+<tbody>
+{% for row in recent_results %}
+<tr>
+    <td>{{ row[0] }}</td>
+    <td>{{ row[1] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+<div class="logout">
+<a href="/logout">Logout</a>
+</div>
+
+</body>
+</html>
