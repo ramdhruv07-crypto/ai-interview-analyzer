@@ -1,46 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Profile</title>
 
-<title>Profile</title>
+    <style>
+        body{
+            background:#071330;
+            color:white;
+            font-family:Segoe UI;
+        }
 
-<style>
+        .container{
+            width:500px;
+            margin:80px auto;
+            background:#1b2947;
+            padding:40px;
+            border-radius:15px;
+            text-align:center;
+        }
 
-body{
-    background:#071330;
-    color:white;
-    font-family:Segoe UI;
-}
+        h1{
+            margin-bottom:30px;
+        }
 
-.container{
-    width:500px;
-    margin:80px auto;
-    background:#1b2947;
-    padding:40px;
-    border-radius:15px;
-    text-align:center;
-}
+        .info{
+            font-size:22px;
+            margin:20px 0;
+        }
 
-h1{
-    margin-bottom:30px;
-}
-
-.info{
-    font-size:22px;
-    margin:20px 0;
-}
-
-a{
-    display:inline-block;
-    margin-top:30px;
-    text-decoration:none;
-    color:white;
-    background:#2450c7;
-    padding:12px 25px;
-    border-radius:10px;
-}
-
-</style>
+        a{
+            display:inline-block;
+            margin-top:30px;
+            text-decoration:none;
+            color:white;
+            background:#2450c7;
+            padding:12px 25px;
+            border-radius:10px;
+        }
+    </style>
 
 </head>
 
@@ -51,15 +48,15 @@ a{
 <h1>👤 User Profile</h1>
 
 <div class="info">
-<b>Name:</b> {{ user[0] }}
+    <b>Name:</b> {{ user["fullname"] }}
 </div>
 
 <div class="info">
-<b>Email:</b> {{ user[1] }}
+    <b>Email:</b> {{ user["email"] }}
 </div>
 
 <a href="/dashboard">
-Back to Dashboard
+    Back to Dashboard
 </a>
 
 </div>
