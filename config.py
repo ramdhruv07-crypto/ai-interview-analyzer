@@ -4,10 +4,12 @@ from urllib.parse import urlparse
 
 DATABASE_URL = os.getenv("MYSQL_URL")
 
-if not DATABASE_URL:
-    raise Exception("MYSQL_URL environment variable is missing.")
+print("DATABASE_URL =", DATABASE_URL)
 
 url = urlparse(DATABASE_URL)
+
+print("HOST =", url.hostname)
+print("DATABASE =", url.path.lstrip("/"))
 
 db = pymysql.connect(
     host=url.hostname,
@@ -20,3 +22,9 @@ db = pymysql.connect(
 )
 
 cursor = db.cursor()
+
+cursor.execute("SELECT DATABASE()")
+print("Connected database:", cursor.fetchone())
+
+cursor.execute("SHOW TABLES")
+print("Tables:", cursor.fetchall())
