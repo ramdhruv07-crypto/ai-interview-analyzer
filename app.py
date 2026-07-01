@@ -127,32 +127,35 @@ def login():
 
     if request.method == 'POST':
 
-        email = request.form.get('email')
-        password = request.form.get('password')
+        email = request.form.get('email').strip()
+        password = request.form.get('password').strip()
 
-        print("EMAIL =", email)
-        print("PASSWORD =", password)
+        print("EMAIL ENTERED =", repr(email))
+        print("PASSWORD ENTERED =", repr(password))
 
         cursor = db.cursor()
+        debug_cursor = db.cursor()
+        debug_cursor.execute("SELECT * FROM users")
+        print("ALL USERS =", debug_cursor.fetchall())
 
-        cursor.execute(
-    """
-    SELECT id, fullname, email
-    FROM users
-    WHERE email=%s AND password=%s
-    """,
-    (email, password)
-)
+        query = """
+        SELECT id, fullname, email
+        FROM users
+        WHERE email=%s AND password=%s
+        """
+
+        print("Executing Query:")
+        print(query)
+
+        cursor.execute(query, (email, password))
 
         user = cursor.fetchone()
-        
-        print("EMAIL ENTERED =", email)
-        print("PASSWORD ENTERED =", password)
+
         print("USER FOUND =", user)
 
         if user:
-            session['user_id'] = user[0]
-            session['name'] = user[1]
+            session['user_id'] = user['id']
+            session['name'] = user['fullname']
 
             return redirect('/dashboard')
 
