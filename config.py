@@ -1,9 +1,13 @@
+import os
 import pymysql
+
 db = pymysql.connect(
-    host="localhost",
-    user="root",
-    password="root123",
-    database="ai_interview_analyzer"
+    host=os.getenv("MYSQLHOST"),
+    user=os.getenv("MYSQLUSER"),
+    password=os.getenv("MYSQLPASSWORD"),
+    database=os.getenv("MYSQLDATABASE"),
+    port=int(os.getenv("MYSQLPORT")),
+    cursorclass=pymysql.cursors.DictCursor
 )
 
 cursor = db.cursor()
