@@ -570,29 +570,30 @@ def history():
 # Profile
 # ----------------------------------------------------
 
-@app.route("/profile")
+@app.route('/profile')
 def profile():
 
-    if "user_id" not in session:
-        return redirect("/login")
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    print("SESSION USER ID =", session.get("user_id"))
 
     cursor = db.cursor()
 
     cursor.execute("""
-        SELECT
-            fullname,
-            email
+        SELECT id, fullname, email
         FROM users
         WHERE id=%s
-    """,(session["user_id"],))
+    """, (session['user_id'],))
 
     user = cursor.fetchone()
+
+    print("USER =", user)
 
     return render_template(
         "profile.html",
         user=user
     )
-
 
 # ----------------------------------------------------
 # Resume Page
