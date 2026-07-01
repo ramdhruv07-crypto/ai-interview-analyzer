@@ -147,19 +147,21 @@ def login():
         print("Executing Query:")
         print(query)
 
-        cursor.execute(query, (email, password))
+    cursor.execute(query, (email.strip(), password.strip()))
+    user = cursor.fetchone()
 
-        user = cursor.fetchone()
+    print("USER FOUND =", user)
 
-        print("USER FOUND =", user)
 
-        if user:
+    print("USER FOUND =", user)
+
+    if user:
             session['user_id'] = user['id']
             session['name'] = user['fullname']
 
             return redirect('/dashboard')
 
-        return "Invalid Login"
+    return "Invalid Login"
 
     return render_template('login.html')
 
